@@ -1,10 +1,14 @@
 
 package com.ciclo3.ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,13 +19,13 @@ public class Category {
     private Integer id;
     private String name;
     private String description;
-
+    
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "category_id")
+    @JsonIgnoreProperties("id_category")
+    public List<Machine> machines;
+    
     public Integer getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -39,5 +43,15 @@ public class Category {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public List<Machine> getMachines() {
+        return machines;
+    }
+
+    public void setMachines(List<Machine> machines) {
+        this.machines = machines;
+    }
+
+    
     
 }

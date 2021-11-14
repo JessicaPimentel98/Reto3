@@ -1,12 +1,15 @@
 
 package com.ciclo3.ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.annotation.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,9 +20,13 @@ public class Machine implements Serializable{
     private Integer id;
     private String brand;
     private Integer year;
-    private Integer category_id;
     private String description;
     private String name;
+    @ManyToOne
+    @JoinColumn(name="category_id")
+    @JsonIgnoreProperties("machines")
+    private Category category_id;
+   
     //Id, brand, year, category_id, description, name
 
     public Integer getId() {
@@ -46,11 +53,11 @@ public class Machine implements Serializable{
         this.year = year;
     }
 
-    public Integer getCategory_id() {
+    public Category getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(Integer category_id) {
+    public void setCategory_id(Category category_id) {
         this.category_id = category_id;
     }
 
@@ -69,7 +76,6 @@ public class Machine implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
-    
-    
+
     
 }
