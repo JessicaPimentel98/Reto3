@@ -25,27 +25,10 @@ public class Machine implements Serializable{
     private Integer year;
     private String description;
     private String name;
-    @ManyToOne
-    @JoinColumn(name="category_id")
-    @JsonIgnoreProperties("machines")
-    private Category category_id;
-    
-    @ManyToOne
-    @JoinColumn(name="id_reservation")
-    private Reservation reservation;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
-    //@JsonIgnoreProperties("category_id")
-    public List<Message> messages;
 
-    //********************************
-     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
-    //@JsonIgnoreProperties("category_id")
-    public List<Reservation> reservations;
-
-    //*********************************
-    
-    //Id, brand, year, category_id, description, name
+    @ManyToOne
+    @JoinColumn(name="idCategory")
+    private Category category;
 
     public Integer getId() {
         return id;
@@ -87,38 +70,15 @@ public class Machine implements Serializable{
         this.name = name;
     }
 
-    public Category getCategory_id() {
-        return category_id;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategory_id(Category category_id) {
-        this.category_id = category_id;
+    public void setCategory(Category category) {
+        this.category = category;
     }
+    
+  
 
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
-
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
-
-    public List<Reservation> getReservations() {
-        return reservations;
-    }
-
-    public void setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
-    }
-
-   
 }
 

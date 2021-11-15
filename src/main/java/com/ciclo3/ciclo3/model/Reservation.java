@@ -23,13 +23,7 @@ public class Reservation implements Serializable{
     private Date startDate;
     private Date devolutionDate;
     
-    @ManyToOne
-    @JoinColumn(name="client_id")
-    private Client client;
-    
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "reservation")
-    public List<Machine> machines;
-
+ 
     public Integer getIdReservation() {
         return idReservation;
     }
@@ -54,21 +48,5 @@ public class Reservation implements Serializable{
         this.devolutionDate = devolutionDate;
     }
 
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public List<Machine> getMachines() {
-        return machines;
-    }
-
-    public void setMachines(List<Machine> machines) {
-        this.machines = machines;
-    }
-    
       
 }
