@@ -28,6 +28,7 @@ public class Machine implements Serializable{
 
     @ManyToOne
     @JoinColumn(name="idCategory")
+    @JsonIgnoreProperties("machines")
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
@@ -38,6 +39,7 @@ public class Machine implements Serializable{
 
     @ManyToOne
     @JoinColumn(name="idMachine")
+    @JsonIgnoreProperties("machines")
     private Machine machine;
 
     public Integer getId() {

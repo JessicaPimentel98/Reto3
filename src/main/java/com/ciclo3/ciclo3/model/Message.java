@@ -25,10 +25,12 @@ public class Message implements Serializable{
     
     @ManyToOne
     @JoinColumn(name="idMachine")
+    @JsonIgnoreProperties("messages")
     private Machine machine;
 
     @ManyToOne
     @JoinColumn(name="idClient")
+    @JsonIgnoreProperties("messages")
     private Client client;
 
     public Integer getIdMessage() {
