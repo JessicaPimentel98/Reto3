@@ -30,6 +30,9 @@ public class Machine implements Serializable{
     @JoinColumn(name="idCategory")
     private Category category;
 
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
+    public List<Message> messages;
+
     public Integer getId() {
         return id;
     }
@@ -77,8 +80,15 @@ public class Machine implements Serializable{
     public void setCategory(Category category) {
         this.category = category;
     }
-    
-  
 
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+    
+    
 }
 

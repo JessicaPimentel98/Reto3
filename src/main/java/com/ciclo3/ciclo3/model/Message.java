@@ -23,7 +23,10 @@ public class Message implements Serializable{
     private Integer idMessage;
     private String messageText;
     
-   
+    @ManyToOne
+    @JoinColumn(name="idMachine")
+    private Machine machine;
+
     public Integer getIdMessage() {
         return idMessage;
     }
@@ -40,7 +43,15 @@ public class Message implements Serializable{
         this.messageText = messageText;
     }
 
-     
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
+    }
+   
+    
    
     
     
