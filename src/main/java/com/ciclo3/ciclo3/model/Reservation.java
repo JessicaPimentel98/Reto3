@@ -27,6 +27,10 @@ public class Reservation implements Serializable{
     @JoinColumn(name="idMachine")
     private Machine machine;
 
+    @ManyToOne
+    @JoinColumn(name="idClient")
+    private Client client;
+
     public Integer getIdReservation() {
         return idReservation;
     }
