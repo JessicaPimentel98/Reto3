@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +19,9 @@ public class Reservation implements Serializable{
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
-    private Client idClient;
-    private Machine id;
+    @ManyToOne
+    @JoinColumn(name="client_id")
+    private Client client;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -44,20 +47,12 @@ public class Reservation implements Serializable{
         this.devolutionDate = devolutionDate;
     }
 
-    public Client getIdClient() {
-        return idClient;
+    public Client getClient() {
+        return client;
     }
 
-    public void setIdClient(Client idClient) {
-        this.idClient = idClient;
-    }
-
-    public Machine getId() {
-        return id;
-    }
-
-    public void setId(Machine id) {
-        this.id = id;
+    public void setClient(Client client) {
+        this.client = client;
     }
     
     
