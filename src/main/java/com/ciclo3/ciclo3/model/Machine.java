@@ -33,6 +33,9 @@ public class Machine implements Serializable{
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
     public List<Message> messages;
 
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
+    public List<Reservation> reservations;
+
     public Integer getId() {
         return id;
     }
@@ -88,6 +91,16 @@ public class Machine implements Serializable{
     public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+    
+   
     
     
 }

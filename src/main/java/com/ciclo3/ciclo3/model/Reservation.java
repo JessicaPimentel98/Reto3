@@ -23,7 +23,10 @@ public class Reservation implements Serializable{
     private Date startDate;
     private Date devolutionDate;
     
- 
+    @ManyToOne
+    @JoinColumn(name="idMachine")
+    private Machine machine;
+
     public Integer getIdReservation() {
         return idReservation;
     }
@@ -48,5 +51,14 @@ public class Reservation implements Serializable{
         this.devolutionDate = devolutionDate;
     }
 
+    public Machine getMachine() {
+        return machine;
+    }
+
+    public void setMachine(Machine machine) {
+        this.machine = machine;
+    }
+    
+    
       
 }
