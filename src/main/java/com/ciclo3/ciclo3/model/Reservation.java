@@ -3,12 +3,15 @@ package com.ciclo3.ciclo3.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,9 +22,13 @@ public class Reservation implements Serializable{
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
+    
     @ManyToOne
     @JoinColumn(name="client_id")
     private Client client;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "reservation")
+    public List<Machine> machines;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -54,6 +61,14 @@ public class Reservation implements Serializable{
     public void setClient(Client client) {
         this.client = client;
     }
+
+    public List<Machine> getMachines() {
+        return machines;
+    }
+
+    public void setMachines(List<Machine> machines) {
+        this.machines = machines;
+    }
     
-    
+      
 }

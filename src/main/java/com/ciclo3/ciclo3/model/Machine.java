@@ -30,11 +30,14 @@ public class Machine implements Serializable{
     @JsonIgnoreProperties("machines")
     private Category category_id;
     
+    @ManyToOne
+    @JoinColumn(name="id_reservation")
+    private Reservation reservation;
+    
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
     //@JsonIgnoreProperties("category_id")
     public List<Message> messages;
 
-    
     //********************************
      @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
     //@JsonIgnoreProperties("category_id")
@@ -92,7 +95,30 @@ public class Machine implements Serializable{
         this.category_id = category_id;
     }
 
-    
-    
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+   
 }
 
