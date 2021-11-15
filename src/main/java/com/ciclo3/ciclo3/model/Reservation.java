@@ -24,7 +24,7 @@ public class Reservation implements Serializable{
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
-    private String status;
+    private String status="created";
     
    
     @ManyToOne
@@ -37,6 +37,8 @@ public class Reservation implements Serializable{
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
+    
+    private Integer Score;
 
     public Integer getIdReservation() {
         return idReservation;
@@ -86,5 +88,13 @@ public class Reservation implements Serializable{
         this.client = client;
     }
 
-   
+    public Integer getScore() {
+        return Score;
+    }
+
+    public void setScore(Integer Score) {
+        this.Score = Score;
+    }
+        
+    
 }
