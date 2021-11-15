@@ -25,8 +25,9 @@ public class Client implements Serializable{
     private String name;
     private Integer age;
     
+    @OneToMany(cascade={CascadeType.PERSIST},mappedBy = "client")
+    public List<Message> messages;
 
-    
     public Integer getIdClient() {
         return idClient;
     }
@@ -67,7 +68,14 @@ public class Client implements Serializable{
         this.age = age;
     }
 
-   
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+    
     
     
 }
