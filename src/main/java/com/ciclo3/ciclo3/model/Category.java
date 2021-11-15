@@ -20,9 +20,9 @@ public class Category {
     private String name;
     private String description;
     
-   @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="category")
-     @JsonIgnoreProperties("category")
-     private List<Machine> machines;
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="category")
+    @JsonIgnoreProperties("category")
+    private List<Machine> machines;
 
     public Integer getId() {
         return id;

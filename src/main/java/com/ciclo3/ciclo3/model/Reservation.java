@@ -32,7 +32,6 @@ public class Reservation implements Serializable{
     @JsonIgnoreProperties("reservations")
     private Machine machine;
 
-    //idClient es igual a clientId
     @ManyToOne
     @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"reservations","messages"})

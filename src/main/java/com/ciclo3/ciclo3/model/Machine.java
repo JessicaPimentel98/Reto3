@@ -32,7 +32,7 @@ public class Machine implements Serializable{
     @JsonIgnoreProperties("machines")
     private Category category;
     
-      @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
     @JsonIgnoreProperties({"machine", "client"})
     private List<Message> messages;
       

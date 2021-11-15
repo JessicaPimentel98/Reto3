@@ -23,7 +23,7 @@ public class Message implements Serializable{
     private Integer idMessage;
     private String messageText;
     
-     @ManyToOne
+    @ManyToOne
     @JoinColumn(name="id")
     @JsonIgnoreProperties({"messages","reservations"})
     private Machine machine;
