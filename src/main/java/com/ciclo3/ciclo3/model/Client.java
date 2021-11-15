@@ -33,6 +33,7 @@ public class Client implements Serializable{
     
     @ManyToOne
     @JoinColumn(name="idreservation")
+    @JsonIgnoreProperties("clients")
     private Reservation reservation;
 
     public Integer getIdClient() {
