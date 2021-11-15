@@ -31,6 +31,10 @@ public class Client implements Serializable{
     @OneToMany(cascade={CascadeType.PERSIST},mappedBy = "client")
     public List<Reservation> reservations; 
     
+    @ManyToOne
+    @JoinColumn(name="idreservation")
+    private Reservation reservation;
+
     public Integer getIdClient() {
         return idClient;
     }
@@ -78,7 +82,22 @@ public class Client implements Serializable{
     public void setMessages(List<Message> messages) {
         this.messages = messages;
     }
-    
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
     
     
 }
