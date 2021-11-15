@@ -30,16 +30,17 @@ public class Machine implements Serializable{
     @JsonIgnoreProperties("machines")
     private Category category_id;
     
-    //********************************
-    //@OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine_id")
-    //@JsonIgnoreProperties("machine_id")
-    //public List<Message> messages;
-    
-    //*********************************
     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
     //@JsonIgnoreProperties("category_id")
     public List<Message> messages;
 
+    
+    //********************************
+     @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
+    //@JsonIgnoreProperties("category_id")
+    public List<Reservation> reservations;
+
+    //*********************************
     
     //Id, brand, year, category_id, description, name
 
