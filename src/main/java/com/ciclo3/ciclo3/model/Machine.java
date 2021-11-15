@@ -3,13 +3,16 @@ package com.ciclo3.ciclo3.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.List;
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -26,7 +29,15 @@ public class Machine implements Serializable{
     @JoinColumn(name="category_id")
     @JsonIgnoreProperties("machines")
     private Category category_id;
-   
+    
+    //********************************
+    //@OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine_id")
+    //@JsonIgnoreProperties("machine_id")
+    //public List<Message> messages;
+    
+    //*********************************
+    
+    
     //Id, brand, year, category_id, description, name
 
     public Integer getId() {
@@ -53,14 +64,6 @@ public class Machine implements Serializable{
         this.year = year;
     }
 
-    public Category getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(Category category_id) {
-        this.category_id = category_id;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -77,5 +80,15 @@ public class Machine implements Serializable{
         this.name = name;
     }
 
+    public Category getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(Category category_id) {
+        this.category_id = category_id;
+    }
+
+    
     
 }
+

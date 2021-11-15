@@ -1,11 +1,15 @@
 
 package com.ciclo3.ciclo3.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +22,10 @@ public class Client implements Serializable{
     private String password;
     private String name;
     private Integer age;
+    
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "client")
+    @JsonIgnoreProperties("category_id")
+    public List<Message> messages;
 
     public Integer getIdClient() {
         return idClient;
@@ -58,7 +66,15 @@ public class Client implements Serializable{
     public void setAge(Integer age) {
         this.age = age;
     }
-    
-    
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
+
+
     
 }
