@@ -21,23 +21,24 @@ public class Machine implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     private String brand;
     private Integer year;
     private String description;
-    private String name;
+   
 
     @ManyToOne
-    @JoinColumn(name="idCategory")
+    @JoinColumn(name ="category")
     @JsonIgnoreProperties("machines")
     private Category category;
-
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
-    public List<Message> messages;
-
-    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
-    public List<Reservation> reservations;
-
     
+      @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
+    @JsonIgnoreProperties({"machine", "client"})
+    private List<Message> messages;
+      
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy = "machine")
+    @JsonIgnoreProperties({"machine", "messages"})
+    private List<Reservation> reservations;
 
     public Integer getId() {
         return id;
@@ -103,7 +104,6 @@ public class Machine implements Serializable{
         this.reservations = reservations;
     }
 
-  
-   
+    
 }
 

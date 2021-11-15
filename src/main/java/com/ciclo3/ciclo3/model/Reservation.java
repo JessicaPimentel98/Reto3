@@ -24,21 +24,19 @@ public class Reservation implements Serializable{
     private Integer idReservation;
     private Date startDate;
     private Date devolutionDate;
+    private String status;
     
+   
     @ManyToOne
-    @JoinColumn(name="idMachine")
-    @JsonIgnoreProperties({"reservations","messages"})
+    @JoinColumn(name = "costumeId")
+    @JsonIgnoreProperties("reservations")
     private Machine machine;
 
+    //idClient es igual a clientId
     @ManyToOne
-    @JoinColumn(name="idClient")
+    @JoinColumn(name = "clientId")
     @JsonIgnoreProperties({"reservations","messages"})
     private Client client;
-
-    @OneToMany(cascade={CascadeType.PERSIST},mappedBy = "reservation")
-    public List<Client> clients;
-
-   
 
     public Integer getIdReservation() {
         return idReservation;
@@ -64,6 +62,14 @@ public class Reservation implements Serializable{
         this.devolutionDate = devolutionDate;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public Machine getMachine() {
         return machine;
     }
@@ -80,14 +86,5 @@ public class Reservation implements Serializable{
         this.client = client;
     }
 
-    public List<Client> getClients() {
-        return clients;
-    }
-
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
-    }
-
    
-    
 }

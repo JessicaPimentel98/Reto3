@@ -20,21 +20,18 @@ public class Client implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idClient;
+    private String name;
     private String email;
     private String password;
-    private String name;
     private Integer age;
     
-    @OneToMany(cascade={CascadeType.PERSIST},mappedBy = "client")
-    public List<Message> messages;
+      @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
+    @JsonIgnoreProperties("client")
+    public List<Message>messages;
 
-    @OneToMany(cascade={CascadeType.PERSIST},mappedBy = "client")
-    public List<Reservation> reservations; 
-    
-    @ManyToOne
-    @JoinColumn(name="idreservation")
-    @JsonIgnoreProperties("clients")
-    private Reservation reservation;
+    @OneToMany(cascade = {CascadeType.PERSIST},mappedBy="client")
+    @JsonIgnoreProperties("client")
+    public List<Reservation>reservations; 
 
     public Integer getIdClient() {
         return idClient;
@@ -42,6 +39,14 @@ public class Client implements Serializable{
 
     public void setIdClient(Integer idClient) {
         this.idClient = idClient;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -58,14 +63,6 @@ public class Client implements Serializable{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Integer getAge() {
@@ -91,14 +88,8 @@ public class Client implements Serializable{
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
-
-    public Reservation getReservation() {
-        return reservation;
-    }
-
-    public void setReservation(Reservation reservation) {
-        this.reservation = reservation;
-    }
     
-    
+  
+  
+  
 }
